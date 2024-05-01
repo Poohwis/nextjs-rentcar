@@ -15,8 +15,8 @@ export default function SloganBanner() {
           key={index}
           className="flex flex-row gap-x-1 items-center  sm:justify-center justify-start  "
         >
-          <Check size={14} color="white" className="bg-accent rounded-full p-[2px]" />
-          <p className="text-[12px] text-black/70">{list}</p>
+          <Check size={14} color="black" className="bg-accent opacity-80 rounded-full p-[2px]"/>
+          <p className="text-[12px] text-black/70 ">{list}</p>
         </div>
       ))}
     </div>

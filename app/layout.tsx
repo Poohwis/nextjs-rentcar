@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/NavBar";
 
-const notosan = Noto_Sans_Thai({subsets: ["thai"]})
+const notosan = Noto_Sans_Thai({ subsets: ["thai"] });
 
 export const metadata: Metadata = {
   title: "Rent & Go - Find your perfect rent",
@@ -16,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <body className={notosan.className}>
-    <NavBar />
-        {children}</body>
+        {children}
+      </body>
     </html>
   );
 }

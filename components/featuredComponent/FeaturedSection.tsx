@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import ButtonRollup from "../ButtonRollup";
+import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselApi,
@@ -9,9 +8,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { featuredList } from "@/tempData";
 
-export default function PromotionSection() {
+export default function FeaturedSection() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -26,27 +26,16 @@ export default function PromotionSection() {
     });
   }, [api]);
 
-  //   get featuslate promotion from db later
-  const promotionList = [
-    { title: "01", image: {} },
-    { title: "02", image: {} },
-    { title: "03", image: {} },
-    { title: "04", image: {} },
-    { title: "05", image: {} },
-    { title: "06", image: {} },
-  ];
-  const showSlide = 3;
+  //get featured data from db later
+  const showSlide = 4;
   return (
-    <div
-      id="promotion"
-      className="w-full flex justify-center my-10 py-6 bg-black "
-    >
+    <div id="featured" className="w-full flex justify-center relative my-10">
       <div className="max-w-5xl w-full">
-        <h2 className="sm:pl-0 pl-4 text-2xl font-bold text-white/80">
-          Promotions & News
+        <h2 className="sm:pl-0 pl-4 text-2xl font-bold text-primary">
+          Deciding where to go?
         </h2>
-        <p className="sm:pl-0 pl-4 text-white/50 text-sm">
-          Find your special discount and offer from the sharer
+        <p className="sm:pl-0 pl-4 text-black/50 text-sm">
+          We recommend these interesting attractions.
         </p>
         <Carousel
           setApi={setApi}
@@ -54,14 +43,28 @@ export default function PromotionSection() {
           opts={{ align: "start" }}
         >
           <CarouselContent>
-            {promotionList.map((list, index) => (
-              <CarouselItem key={index} className={`sm:basis-1/${showSlide}  `}>
+            {featuredList.map((list, index) => (
+              <CarouselItem key={index} className={`sm:basis-1/4`}>
                 <div className="w-full h-[200px] sm:px-0 px-2">
                   <div
                     className="w-full h-full bg-primary rounded-xl hover:cursor-pointer
-                   flex justify-center items-center text-white/80 font-extrabold text-6xl"
+                   flex"
                   >
-                    {list.title}
+                    <div className="flex flex-col px-2 justify-between py-2 w-full">
+                      <div className="flex flex-col items-end ">
+                        <p className="text-[10px] text-white/80">start from</p>
+                        <p className="text-sm text-accent">{list.rate}</p>
+                        <p className="text-[10px] text-white/80">Bath/day</p>
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <h2 className="text-white/80 text-lg font-bold">
+                          {list.title}
+                        </h2>
+                        <p className="text-white/80 text-[12px] text-balance">
+                          {list.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CarouselItem>
@@ -69,7 +72,7 @@ export default function PromotionSection() {
           </CarouselContent>
           <div
             className={cn(
-              current === promotionList.length - showSlide
+              current === featuredList.length - showSlide
                 ? "opacity-0"
                 : "opacity-100",
               "transition-all"
@@ -87,13 +90,13 @@ export default function PromotionSection() {
           </div>
         </Carousel>
         <div className="flex flex-row justify-end mt-4 gap-x-1 mr-4">
-          {promotionList.map((_, index) => (
+          {featuredList.map((_, index) => (
             <div
               key={index}
               className={cn(
                 "w-2 h-2 rounded-full hover:cursor-pointer",
                 index === current ? "bg-accent" : "bg-muted-foreground/50",
-                index > promotionList.length - showSlide
+                index > featuredList.length - showSlide
                   ? "sm:hidden flex"
                   : "flex"
               )}
