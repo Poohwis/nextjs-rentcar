@@ -34,7 +34,7 @@ export default function AboutusSection() {
         <div ref={ref} className="flex flex-col px-4 gap-y-10 mt-4">
           <div className="sm:grid sm:grid-cols-2 sm:gap-x-4 sm:items-center flex flex-col gap-y-2">
             <p className="text-[13px] sm:indent-4 indent-2 text-white/80">
-              We're passionate about making car rentals easier, more affordable,
+              We&apos;re passionate about making car rentals easier, more affordable,
               and more convenient. It all started with a frustrating experience
               - searching for a rental car that fit our needs and budget, only
               to be met with hidden fees and limited options. We envisioned a
